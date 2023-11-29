@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class KnightMove : MonoBehaviour
-{
+{ 
     bool isPickedUp = false;
     bool isPutDown = false;
         
