@@ -1,0 +1,34 @@
+{
+    "name": "Input",
+    "maps": [
+        {
+            "name": "Interaction",
+            "id": "66445fc7-6eec-49fe-b10d-76da80237cd0",
+            "actions": [
+                {
+                    "name": "Grab",
+                    "type": "Value",
+                    "id": "657ef68f-e376-40cf-890f-a8a54132eee4",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "74210349-3c16-4d5e-b771-51238e51c052",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
