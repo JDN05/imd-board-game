@@ -4,18 +4,32 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class KnightMove : MonoBehaviour
-{ 
+{
+    public bool isGrabbed = false;
+
     bool isPickedUp = false;
     bool isPutDown = false;
-        
+
+    List<Vector3> possibilities = new List<Vector3>();
+    Vector3[] offsets = { new Vector3(1f, 0f, 2f), new Vector3(2f, 0f, 1f), new Vector3(2f, 0f, -1f), new Vector3(1f, 0f, -2f), new Vector3(-1f, 0f, -2f), new Vector3(-2f, 0f, -1f), new Vector3(-2f, 0f, 1f), new Vector3(-1f, 0f, 2f) };
+
     Vector3 pickedUpPosition;
 
-    ArrayList possibilities = new ArrayList();
-    Vector3[] offsets = { new Vector3(1f, 0f, 2f), new Vector3(2f, 0f, 1f), new Vector3(2f, 0f, -1f), new Vector3(1f, 0f, -2f), new Vector3(-1f, 0f, -2f), new Vector3(-2f, 0f, -1f), new Vector3(-2f, 0f, 1f), new Vector3(-1f, 0f, 2f) };
+    GameObject startTransformation;
+    Transform controller;
+
+    Vector3 locationOffset;
+    Quaternion rotationOffset;
 
     void Awake()
     {
- 
+        startTransformation = new GameObject();
+
+        startTransformation.transform.position = transform.position;
+        startTransformation.transform.rotation = transform.rotation;
+
+        controller = transform;
+
     }
 
     // Start is called before the first frame update
@@ -38,13 +52,14 @@ public class KnightMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //isPickedUp = ;
         //isPutDown = ;
         
         if(isPickedUp)
         {
-            pickedUpPosition = transform.position;
+            locationOffset = transform.position - controller.position;
+            rotationOffset = transform.rotation * Quaternion.Inverse(controller.rotation);
+
             isPickedUp = false;
             Debug.Log("space");
         } 
@@ -71,24 +86,11 @@ public class KnightMove : MonoBehaviour
             isPutDown = false;
             transform.position = move;
         }
-    }
 
-    private void updatePossibilities()
-    {
-        
-    }
-
-    private void PlayerFound()
-    {
-
-    }
-
-    private void PlayerLost()
-    {
-
-    }
-
-    private void onDestroy()
-    {
+        if(isGrabbed)
+        {
+            transform.position = controller.position + locationOffset;
+            transform.rotation = controller.rotation * rotationOffset;
+        }
     }
 }

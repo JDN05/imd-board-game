@@ -20,8 +20,15 @@ public class InputReader : MonoBehaviour
         {
             initializeInputReader();
         }   
+
+        
     }
 
+    void grab() {
+        RaycastHit hit;
+    
+    }
+    
     void initializeInputReader()
     {
         InputDevices.GetDevices(inputDevices);
@@ -30,7 +37,7 @@ public class InputReader : MonoBehaviour
         foreach(var inputDevice in inputDevices)
         {
             inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
-            Debug.Log(inputDevice.name + " " + triggerValue);
+            Debug.Log(inputDevice.name + " " + inputDevice.characteristics + " and " + triggerValue);
         }
     }
 

@@ -1880,7 +1880,7 @@ GameObject:
   - component: {fileID: 940681364}
   - component: {fileID: 940681367}
   - component: {fileID: 940681366}
-  - component: {fileID: 940681365}
+  - component: {fileID: 940681368}
   m_Layer: 0
   m_Name: WizardPosition
   m_TagString: Untagged
@@ -1904,18 +1904,6 @@ Transform:
   - {fileID: 1926612412}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &940681365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940681363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3bda2e4f9aabf478069f49e2a55204, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &940681366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,6 +1961,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Timeout: 10
   m_XROrigin: {fileID: 488068343}
+--- !u!114 &940681368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940681363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66f0a38c007ce9439cb201af11dccf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMoving: 0
+  offsets:
+  - {x: -2, y: 0, z: -1}
+  - {x: -2, y: 0, z: 1}
+  - {x: -1, y: 0, z: -2}
+  - {x: -1, y: 0, z: 2}
+  - {x: 1, y: 0, z: -2}
+  - {x: 1, y: 0, z: 2}
+  - {x: -2, y: 0, z: -1}
+  - {x: -2, y: 0, z: 1}
 --- !u!1001 &959639783
 PrefabInstance:
   m_ObjectHideFlags: 0
