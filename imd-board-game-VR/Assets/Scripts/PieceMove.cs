@@ -28,19 +28,11 @@ public class PieceMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("start");
         pickedUpPosition = transform.position;
         defaultRotation = transform.rotation;
 
-        InputDevices.GetDevices(inputDevices);
-        InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
-
-        foreach (var inputDevice in inputDevices)
-        {
-            inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
-            trigger = triggerValue;
-            Debug.Log(inputDevice.name + " " + inputDevice.characteristics + " and " + triggerValue);
-        }
-
+        
         //StartCoroutine(mover());
     }
     
@@ -59,6 +51,19 @@ public class PieceMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        InputDevices.GetDevices(inputDevices);
+
+        foreach (var inputDevice in inputDevices)
+        {
+            inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+            trigger = triggerValue;
+            Debug.Log(inputDevice.name + " " + inputDevice.characteristics + " and " + triggerValue);
+        }
+        InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
+
+
+
+        Debug.Log(trigger);
         if(!isMoving && trigger > 0f)
         {
             isMoving = true;
