@@ -10,6 +10,8 @@ public class PieceMove : MonoBehaviour
 
     public bool isMoving = false;
 
+    public float gridSize = 1f;
+
     List<Vector3> possibilities = new List<Vector3>();
     public List<Vector3> offsets = new List<Vector3>();
 
@@ -41,7 +43,7 @@ public class PieceMove : MonoBehaviour
 
         //StartCoroutine(mover());
     }
-
+    
     IEnumerator mover()
     {
         yield return new WaitForSeconds(2);

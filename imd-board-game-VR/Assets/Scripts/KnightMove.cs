@@ -66,8 +66,6 @@ public class KnightMove : MonoBehaviour
         else if(isPutDown)
         {
             Vector3 move = Vector3.zero;
-            Debug.Log(pickedUpPosition);
-            Debug.Log(transform.position);
             foreach (Vector3 offset in offsets)
             {
                 Debug.Log(pickedUpPosition + offset);
