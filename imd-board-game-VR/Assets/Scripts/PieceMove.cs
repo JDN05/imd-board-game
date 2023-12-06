@@ -42,7 +42,7 @@ public class PieceMove : MonoBehaviour {
         InputDevices.GetDevices(inputDevices);
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
 
-        StartCoroutine(mover());
+        //StartCoroutine(mover());
     }
     
     IEnumerator mover()
