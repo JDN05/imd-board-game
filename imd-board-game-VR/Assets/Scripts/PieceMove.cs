@@ -67,7 +67,7 @@ public class PieceMove : MonoBehaviour {
 
             foreach (var inputDevice in inputDevices)
             {
-                inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+                inputDevice.TryGetFeatureValue(CommonUsages.grip, out float triggerValue);
                 trigger = triggerValue;
                 Debug.Log(inputDevice.name + " " + inputDevice.characteristics + " and " + triggerValue);
             }
@@ -83,26 +83,27 @@ public class PieceMove : MonoBehaviour {
         if(isMoving && trigger == 0f)
         {
             isMoving = false;
+            transform.position = new Vector3(transform.position.x, pickedUpPosition.y, transform.position.z);
 
             Vector3 move = pickedUpPosition;
             foreach (Vector3 offset in offsets)
             {
-                
                 Vector3 gridOffset = offset * gridSize;
-                Vector3 spot = transform.position + gridOffset;
+                Vector3 spot = pickedUpPosition + gridOffset;
                 if(spot.x > gridMaxX || spot.x < gridMinX || spot.z > gridMaxZ || spot.z < gridMinZ)
                 {
                     Debug.Log("outta bounds");
-                    break;
-                }
-                Debug.Log(pickedUpPosition + gridOffset);
-                if (Vector3.Distance(pickedUpPosition + gridOffset, transform.position) <= gridSize)
-                {
-                    if (move == pickedUpPosition || (pickedUpPosition + gridOffset - transform.position).magnitude < (transform.position - move).magnitude)
+                } else {
+                    Debug.Log(pickedUpPosition + gridOffset);
+                    if (Vector3.Distance(spot, transform.position) <= gridSize * 1.5)
                     {
-                        move = pickedUpPosition + gridOffset;
+                        if (move == pickedUpPosition || (pickedUpPosition + gridOffset - transform.position).magnitude < (transform.position - move).magnitude)
+                        {
+                            move = pickedUpPosition + gridOffset;
+                        }
                     }
                 }
+                
             }
             transform.position = move;
             transform.rotation = defaultRotation;
