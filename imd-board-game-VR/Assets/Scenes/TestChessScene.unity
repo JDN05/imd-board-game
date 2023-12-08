@@ -2986,6 +2986,10 @@ MonoBehaviour:
   gridMaxZ: -1
   offsets:
   - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: -1}
+  - {x: -1, y: 0, z: 1}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
 --- !u!65 &106951356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10774,6 +10778,10 @@ MonoBehaviour:
   gridMinZ: -13
   gridMaxZ: -1
   offsets:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
 --- !u!65 &499870555
 BoxCollider:
@@ -12173,6 +12181,10 @@ MonoBehaviour:
   gridMinZ: -13
   gridMaxZ: -1
   offsets:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
 --- !u!65 &520456651
 BoxCollider:
@@ -13580,6 +13592,10 @@ MonoBehaviour:
   gridMaxZ: -1
   offsets:
   - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: -1}
+  - {x: -1, y: 0, z: 1}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
 --- !u!65 &546115839
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15671,6 +15687,10 @@ MonoBehaviour:
   gridMinZ: -13
   gridMaxZ: -1
   offsets:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
 --- !u!65 &609126569
 BoxCollider:
@@ -19476,6 +19496,10 @@ MonoBehaviour:
   gridMinZ: -13
   gridMaxZ: -1
   offsets:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
 --- !u!65 &773444319
 BoxCollider:
@@ -20428,6 +20452,10 @@ MonoBehaviour:
   gridMaxZ: -1
   offsets:
   - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: -1}
+  - {x: -1, y: 0, z: 1}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
 --- !u!65 &808135489
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25666,6 +25694,10 @@ MonoBehaviour:
   gridMaxZ: -1
   offsets:
   - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: -1}
+  - {x: -1, y: 0, z: 1}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
 --- !u!65 &1112181411
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31388,6 +31420,10 @@ MonoBehaviour:
   gridMaxZ: -1
   offsets:
   - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: -1}
+  - {x: -1, y: 0, z: 1}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
 --- !u!65 &1382566860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32129,6 +32165,10 @@ MonoBehaviour:
   gridMaxZ: -1
   offsets:
   - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: -1}
+  - {x: -1, y: 0, z: 1}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
 --- !u!65 &1442435806
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33683,6 +33723,10 @@ MonoBehaviour:
   gridMaxZ: -1
   offsets:
   - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: -1}
+  - {x: -1, y: 0, z: 1}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
 --- !u!65 &1497300068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36051,6 +36095,10 @@ MonoBehaviour:
   gridMinZ: -13
   gridMaxZ: -1
   offsets:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
 --- !u!65 &1541150098
 BoxCollider:
@@ -44146,6 +44194,10 @@ MonoBehaviour:
   gridMaxZ: -1
   offsets:
   - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 0, z: -1}
+  - {x: -1, y: 0, z: 1}
+  - {x: -2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
 --- !u!65 &2022945936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45097,6 +45149,10 @@ MonoBehaviour:
   gridMinZ: -13
   gridMaxZ: -1
   offsets:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
 --- !u!65 &2048418971
 BoxCollider:
@@ -45671,6 +45727,10 @@ MonoBehaviour:
   gridMinZ: -13
   gridMaxZ: -1
   offsets:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
 --- !u!65 &2106182934
 BoxCollider:
@@ -46277,6 +46337,10 @@ MonoBehaviour:
   gridMinZ: -13
   gridMaxZ: -1
   offsets:
+  - {x: 1, y: 0, z: 0}
+  - {x: 1, y: 0, z: -1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 2, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
 --- !u!65 &2137661434
 BoxCollider:

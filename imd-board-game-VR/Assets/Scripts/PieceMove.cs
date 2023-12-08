@@ -12,6 +12,8 @@ public class PieceMove : MonoBehaviour {
     public bool isCaptured = false;
     bool captureToggled = false;
 
+    bool calibrated = false;
+
     public float gridSize = 1f;
 
     public float gridMinX;
@@ -40,107 +42,107 @@ public class PieceMove : MonoBehaviour {
     {
         rigidbody = GetComponent<Rigidbody>();
 
-        pickedUpPosition = transform.position;
-        defaultRotation = transform.rotation;
+        
 
         InputDevices.GetDevices(inputDevices);
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
 
-        //StartCoroutine(mover());
+        StartCoroutine(calibrate());
     }
-    
-    IEnumerator mover()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            yield return new WaitForSeconds(2);
-            trigger = 1f;
-            yield return new WaitForSeconds(1);
-            transform.position = transform.position + gridSize * new Vector3((float)-(i%2 + 1), 0f, (float)((i+1)%2 + 1));
-            transform.Rotate(20f, 0f, 30f);
-            yield return new WaitForSeconds(1f);
-            trigger = 0f;
-        }
+
+    IEnumerator calibrate() {
+        yield return new WaitForSeconds(1);
+
+        pickedUpPosition = transform.position;
+        defaultRotation = transform.rotation;
+        calibrated = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(inputDevices.Count < 3) {
-            InputDevices.GetDevices(inputDevices);
+        if(calibrated) {
 
-            foreach (var inputDevice in inputDevices)
-            {
-                inputDevice.TryGetFeatureValue(CommonUsages.grip, out float triggerValue);
-                trigger = triggerValue;
-                Debug.Log(inputDevice.name + " " + inputDevice.characteristics + " and " + triggerValue);
-
-                inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float indexValue);
-                index = indexValue;
-            }
-            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
-        }
         
-        if(!isMoving && trigger > 0f)
-        {
-            isMoving = true;
-            Debug.Log("picked it up");
-        }
+            if(inputDevices.Count < 3) {
+                InputDevices.GetDevices(inputDevices);
 
-        if(isMoving && trigger == 0f && !isCaptured)
-        {
-            isMoving = false;
-            transform.position = new Vector3(transform.position.x, pickedUpPosition.y, transform.position.z);
-
-            Vector3 move = pickedUpPosition;
-            foreach (Vector3 offset in offsets)
-            {
-                Vector3 gridOffset = Vector3.zero;
-                Vector3 spot = Vector3.zero;
-
-                gridOffset = offset * gridSize;
-                spot = pickedUpPosition + gridOffset;
-                if(spot.x > gridMaxX || spot.x < gridMinX || spot.z > gridMaxZ || spot.z < gridMinZ)
+                foreach (var inputDevice in inputDevices)
                 {
-                    Debug.Log("outta bounds");
-                } else {
-                    Debug.Log(pickedUpPosition + gridOffset);
-                    if (Vector3.Distance(spot, transform.position) <= gridSize)
+                    inputDevice.TryGetFeatureValue(CommonUsages.grip, out float triggerValue);
+                    trigger = triggerValue;
+                    Debug.Log(inputDevice.name + " " + inputDevice.characteristics + " and " + triggerValue);
+
+                    inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float indexValue);
+                    index = indexValue;
+                }
+                InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
+            }
+            
+            if(!isMoving && trigger > 0f)
+            {
+                isMoving = true;
+                Debug.Log("picked it up");
+            }
+
+            if(isMoving && trigger == 0f && !isCaptured)
+            {
+                isMoving = false;
+                transform.position = new Vector3(transform.position.x, pickedUpPosition.y, transform.position.z);
+
+                Vector3 move = pickedUpPosition;
+                foreach (Vector3 offset in offsets)
+                {
+                    Vector3 gridOffset = Vector3.zero;
+                    Vector3 spot = Vector3.zero;
+
+                    gridOffset = offset * gridSize;
+                    spot = pickedUpPosition + gridOffset;
+                    if(spot.x > gridMaxX || spot.x < gridMinX || spot.z > gridMaxZ || spot.z < gridMinZ)
                     {
-                        if (Vector3.Distance(spot, transform.position) < Vector3.Distance(transform.position, move))
+                        Debug.Log("outta bounds");
+                    } else {
+                        Debug.Log(pickedUpPosition + gridOffset);
+                        if (Vector3.Distance(spot, transform.position) <= gridSize)
                         {
-                            move = spot;
+                            if (Vector3.Distance(spot, transform.position) < Vector3.Distance(transform.position, move))
+                            {
+                                move = spot;
+                            }
                         }
                     }
                 }
-            }
 
-            transform.position = move;
-            transform.rotation = defaultRotation;
-
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = Vector3.zero;
-
-            pickedUpPosition = transform.position;
-            Debug.Log("put it down");
-        }
-
-        if(isMoving && index > 0f && !captureToggled)
-        {
-            if(isCaptured) {
-                transform.position = pickedUpPosition;
+                transform.position = move;
                 transform.rotation = defaultRotation;
 
                 rigidbody.velocity = Vector3.zero;
                 rigidbody.angularVelocity = Vector3.zero;
-                isCaptured = false;
-                captureToggled = true;
-            } else {
-                isCaptured = true;
-                captureToggled = true;
+
+                pickedUpPosition = transform.position;
+                Debug.Log("put it down");
             }
-        } else if(index == 0f) {
-            captureToggled = false; 
+
+            if(index > 0f && !captureToggled)
+            {
+                if(isCaptured) {
+                    transform.position = pickedUpPosition;
+                    transform.rotation = defaultRotation;
+
+                    rigidbody.velocity = Vector3.zero;
+                    rigidbody.angularVelocity = Vector3.zero;
+                    isCaptured = false;
+                    captureToggled = true;
+                } else {
+                    isCaptured = true;
+                    captureToggled = true;
+                }
+            } else if(index == 0f && trigger == 0f) {
+                captureToggled = false; 
+                if(!(transform.position.x > gridMaxX || transform.position.x < gridMinX || transform.position.z > gridMaxZ || transform.position.z < gridMinZ)) {
+                    isCaptured = false;
+                }
+            }
         }
     }
 }
