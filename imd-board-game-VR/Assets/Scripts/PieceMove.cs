@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using UnityEngine.XR;
 
 public class PieceMove : MonoBehaviour { 
-public GameObject indicator;
 
     List<InputDevice> inputDevices = new List<InputDevice>();
 
@@ -21,15 +20,12 @@ public GameObject indicator;
     List<Vector3> possibilities = new List<Vector3>();
     public List<Vector3> offsets = new List<Vector3>();
 
-    public int steps;
-
     Vector3 pickedUpPosition;
     Quaternion defaultRotation;
 
     float trigger = 0f;
 
     Rigidbody rigidbody;
-    Transform indicatorT;
 
     void Awake()
     {
@@ -47,7 +43,7 @@ public GameObject indicator;
         InputDevices.GetDevices(inputDevices);
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
 
-        StartCoroutine(mover());
+        //StartCoroutine(mover());
     }
     
     IEnumerator mover()
@@ -105,7 +101,7 @@ public GameObject indicator;
                     Debug.Log(pickedUpPosition + gridOffset);
                     if (Vector3.Distance(spot, transform.position) <= gridSize)
                     {
-                        if (move == pickedUpPosition || Vector3.Distance(spot, transform.position) < Vector3.Distance(transform.position, move))
+                        if (Vector3.Distance(spot, transform.position) < Vector3.Distance(transform.position, move))
                         {
                             move = spot;
                         }
