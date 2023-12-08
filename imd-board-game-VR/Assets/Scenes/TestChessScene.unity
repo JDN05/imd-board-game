@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -684,6 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66f0a38c007ce9439cb201af11dccf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indicator: {fileID: 2086876247}
   isMoving: 0
   gridSize: 1.61
   gridMinX: -6
@@ -699,6 +700,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 2}
   - {x: 2, y: 0, z: -1}
   - {x: 2, y: 0, z: 1}
+  steps: 2
 --- !u!1001 &17742591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12775,6 +12777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66f0a38c007ce9439cb201af11dccf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indicator: {fileID: 2086876247}
   isMoving: 0
   gridSize: 1.61
   gridMinX: -6
@@ -12790,6 +12793,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 2}
   - {x: 2, y: 0, z: -1}
   - {x: 2, y: 0, z: 1}
+  steps: 2
 --- !u!1 &795772172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ef7372b852139454b8268e6dab6fad01, type: 3}
@@ -12978,6 +12982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66f0a38c007ce9439cb201af11dccf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indicator: {fileID: 0}
   isMoving: 0
   gridSize: 1.61
   gridMinX: -6
@@ -12993,6 +12998,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 2}
   - {x: 2, y: 0, z: -1}
   - {x: 2, y: 0, z: 1}
+  steps: 0
 --- !u!1001 &829873548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17495,7 +17501,7 @@ MonoBehaviour:
   m_AllowAnchorControl: 1
   m_UseForceGrab: 0
   m_RotateSpeed: 180
-  m_TranslateSpeed: 1
+  m_TranslateSpeed: 5
   m_AnchorRotateReferenceFrame: {fileID: 0}
   m_AnchorRotationMode: 0
   m_UIHoverEntered:

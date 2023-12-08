@@ -5,6 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.XR;
 
 public class PieceMove : MonoBehaviour { 
+public GameObject indicator;
+
     List<InputDevice> inputDevices = new List<InputDevice>();
 
     public bool isMoving = false;
@@ -19,12 +21,15 @@ public class PieceMove : MonoBehaviour {
     List<Vector3> possibilities = new List<Vector3>();
     public List<Vector3> offsets = new List<Vector3>();
 
+    public int steps;
+
     Vector3 pickedUpPosition;
     Quaternion defaultRotation;
 
     float trigger = 0f;
 
     Rigidbody rigidbody;
+    Transform indicatorT;
 
     void Awake()
     {
@@ -42,7 +47,7 @@ public class PieceMove : MonoBehaviour {
         InputDevices.GetDevices(inputDevices);
         InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
 
-        //StartCoroutine(mover());
+        StartCoroutine(mover());
     }
     
     IEnumerator mover()
@@ -88,23 +93,26 @@ public class PieceMove : MonoBehaviour {
             Vector3 move = pickedUpPosition;
             foreach (Vector3 offset in offsets)
             {
-                Vector3 gridOffset = offset * gridSize;
-                Vector3 spot = pickedUpPosition + gridOffset;
+                Vector3 gridOffset = Vector3.zero;
+                Vector3 spot = Vector3.zero;
+
+                gridOffset = offset * gridSize;
+                spot = pickedUpPosition + gridOffset;
                 if(spot.x > gridMaxX || spot.x < gridMinX || spot.z > gridMaxZ || spot.z < gridMinZ)
                 {
                     Debug.Log("outta bounds");
                 } else {
                     Debug.Log(pickedUpPosition + gridOffset);
-                    if (Vector3.Distance(spot, transform.position) <= gridSize * 1.5)
+                    if (Vector3.Distance(spot, transform.position) <= gridSize)
                     {
-                        if (move == pickedUpPosition || (pickedUpPosition + gridOffset - transform.position).magnitude < (transform.position - move).magnitude)
+                        if (move == pickedUpPosition || Vector3.Distance(spot, transform.position) < Vector3.Distance(transform.position, move))
                         {
-                            move = pickedUpPosition + gridOffset;
+                            move = spot;
                         }
                     }
                 }
-                
             }
+
             transform.position = move;
             transform.rotation = defaultRotation;
 
