@@ -9,6 +9,8 @@ public class PieceMove : MonoBehaviour {
     List<InputDevice> inputDevices = new List<InputDevice>();
 
     public bool isMoving = false;
+    public bool isCaptured = false;
+    bool captureToggled = false;
 
     public float gridSize = 1f;
 
@@ -24,6 +26,7 @@ public class PieceMove : MonoBehaviour {
     Quaternion defaultRotation;
 
     float trigger = 0f;
+    float index = 0f;
 
     Rigidbody rigidbody;
 
@@ -71,6 +74,9 @@ public class PieceMove : MonoBehaviour {
                 inputDevice.TryGetFeatureValue(CommonUsages.grip, out float triggerValue);
                 trigger = triggerValue;
                 Debug.Log(inputDevice.name + " " + inputDevice.characteristics + " and " + triggerValue);
+
+                inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float indexValue);
+                index = indexValue;
             }
             InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller, inputDevices);
         }
@@ -81,7 +87,7 @@ public class PieceMove : MonoBehaviour {
             Debug.Log("picked it up");
         }
 
-        if(isMoving && trigger == 0f)
+        if(isMoving && trigger == 0f && !isCaptured)
         {
             isMoving = false;
             transform.position = new Vector3(transform.position.x, pickedUpPosition.y, transform.position.z);
@@ -117,6 +123,24 @@ public class PieceMove : MonoBehaviour {
 
             pickedUpPosition = transform.position;
             Debug.Log("put it down");
+        }
+
+        if(isMoving && index > 0f && !captureToggled)
+        {
+            if(isCaptured) {
+                transform.position = pickedUpPosition;
+                transform.rotation = defaultRotation;
+
+                rigidbody.velocity = Vector3.zero;
+                rigidbody.angularVelocity = Vector3.zero;
+                isCaptured = false;
+                captureToggled = true;
+            } else {
+                isCaptured = true;
+                captureToggled = true;
+            }
+        } else if(index == 0f) {
+            captureToggled = false; 
         }
     }
 }
